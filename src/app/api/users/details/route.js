@@ -9,7 +9,7 @@ export async function GET(NextRequest) {
   try {
     const UserId = await getDataToken(NextRequest);
 
-    const user = await User.findById({ id: UserId }).select("-password");
+    const user = await User.findById({ _id: UserId }).select("-password");
 
     return NextResponse.json({
       message: "User found",

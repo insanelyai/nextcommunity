@@ -53,9 +53,10 @@ const Navbar = () => {
       try {
         // Use await to get the resolved data from the promise
         const response = await axios.get("/api/users/details");
+        console.log(response);
         setUser(response.data.data);
       } catch (error) {
-        console.error("Error fetching user details:", error.message);
+        console.error("Error fetching user details:", error);
       }
     };
 
@@ -80,7 +81,7 @@ const Navbar = () => {
             </NavigationMenuList>
           </NavigationMenu>
 
-          {user ? (
+          {!user ? (
             <Dialog>
               <DialogTrigger asChild>
                 <Button>Login/Signup</Button>
@@ -97,7 +98,7 @@ const Navbar = () => {
             </Dialog>
           ) : (
             <span className='text-2xl font-bold text-white'>
-              {console.log(user)}
+              {user.username}
             </span>
           )}
           <ModeToggle />
